@@ -19,7 +19,7 @@ select distinct city from city where city like 'L%a' and city not like '% %'
 
 
 --ЗАДАНИЕ №3
-select * from payment p where payment_date between '2007-03-16' and '2007-03-20' and amount > 1.00
+select * from payment p where payment_date between '2007-03-16 00:00:00' and '2007-03-20 23:59:59' and amount > 1.00
 order by payment_date
 
 
@@ -55,7 +55,7 @@ LOWER(first_name) as first_name,
 LOWER(last_name) as last_name,
 active 
 from customer c 
-where first_name = 'Kelly' or first_name = 'Willie' and active = 1
+where first_name = 'Kelly' or (first_name = 'Willie' and active = 1)
 
 
 
@@ -136,6 +136,6 @@ from
 customer c 
 order by customer_id
 
-
+.
 
 
