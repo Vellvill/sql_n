@@ -39,7 +39,7 @@ from
 customer c 
 group by 
 store_id
-limit 1
+having count(store_id) > 300
 
 
 
@@ -54,13 +54,12 @@ c2.city
 from
 customer c 
 right join staff s on s.store_id = c.store_id 
-right join address a on a.address_id = c.store_id 
+right join store s2 on s.store_id = s2.store_id 
+right join address a on s2.address_id = a.address_id 
 right join city c2 on c2.city_id = a.city_id 
 group by
 c.store_id, s.first_name, s.last_name, c2.city 
-order by 
-c.store_id 
-limit 1
+having count(c.store_id) > 300 
 
 
 
@@ -105,13 +104,12 @@ count(p.amount) desc
 
 
 --ЗАДАНИЕ №5
-select
-c.city,
+select distinct 
+c.city, 
 c2.city
 from city c 
-inner join 
-city c2
-on c < c2
+cross join city c2 
+where c.city != c2.city
 
  
 
